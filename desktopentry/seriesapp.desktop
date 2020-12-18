@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Seriesapp
+Icon=/home/gideon/bin/seriesapp.png
+Exec=/home/gideon/bin/seriesapp
+NoDisplay=false
+Categories=AudioVideo
+StartupNotify=false
+Terminal=false
+GenericName=For your series
