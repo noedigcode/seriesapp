@@ -2,9 +2,9 @@
 Series-app
 ==========
 For your series
---------------------------------------
+---------------
 
-2011-2020 Gideon van der Kolf, noedigcode@gmail.com
+2011-2022 Gideon van der Kolf, noedigcode@gmail.com
 
 Series-app is a small application that retrieves series and episode info from
 epguides.com and allows the user to view and copy episode names to the clipboard

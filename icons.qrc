@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/">
-        <file alias="star_bright">icons/star_yellow.png</file>
-        <file alias="back">icons/back.png</file>
-        <file alias="refresh">icons/refresh.png</file>
-        <file alias="search">icons/search.png</file>
-        <file alias="star_dim">icons/star_grey.png</file>
-        <file alias="asteroid">icons/asteroid.png</file>
         <file>icons/asteroid_64.png</file>
+        <file>icons/icons8-back-48.png</file>
+        <file>icons/icons8-search-48.png</file>
+        <file>icons/icons8-star-filled-48.png</file>
+        <file>icons/icons8-synchronize-48.png</file>
+        <file>icons/icons8-settings-48.png</file>
+        <file>icons/icons8-star-filled-dark-48.png</file>
     </qresource>
 </RCC>

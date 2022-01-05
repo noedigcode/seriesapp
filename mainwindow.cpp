@@ -7,11 +7,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Initialise variables
-    dlMode = DLMODE_NONE;
-    viewMode = VIEWMODE_NONE;
-    proxyPort = 0;
-
     this->setWindowTitle(QString("Series-app %1").arg(SERIESAPP_VERSION));
     ui->stackedWidget->setCurrentIndex(STACKED_WIDGET_PAGE_MAIN);
 
@@ -81,7 +76,7 @@ void MainWindow::addDaysOldString(QString &str, int days)
 
 void MainWindow::log(QString msg)
 {
-    ui->textBrowser_ErrorLog->append(msg + "\n");
+    ui->textBrowser_ErrorLog->append(msg);
 }
 
 /* Returns the settings directory, with the optional specified filename added to
@@ -255,6 +250,9 @@ void MainWindow::downloadFinished(QNetworkReply *reply)
 {
     if (reply->error()) {
         ui->label->setText("Download failed");
+        log("Download failed of: " + reply->request().url().toString());
+        log("Error: " + reply->errorString());
+
     } else {
 
         if (dlMode == DLMODE_SERIESLIST) {
@@ -348,12 +346,13 @@ void MainWindow::on_getButton_clicked()
 
 void MainWindow::addFavListToGUI()
 {
-    int i=0;
-    for (i=favList.count()-1; i>=0; i--) {
+    for (int i=favList.count()-1; i >= 0; i--) {
         // Add name to GUI list
-        ui->listWidget->insertItem(0,getSeriesName(favList[i]));
-        QColor kleur = QColor(200,200,20);
-        ui->listWidget->item(0)->setBackgroundColor(kleur);
+        QListWidgetItem* item = new QListWidgetItem();
+        item->setText(getSeriesName(favList[i]));
+        item->setBackground(favBgColor);
+        item->setForeground(favFgColor);
+        ui->listWidget->insertItem(0, item);
         // Add series index to parallel list
         seriesListGUI.prepend(-1);
     }
@@ -411,7 +410,7 @@ void MainWindow::loadEpList(QString ep, bool redownload)
         } else {
 
             //QString address = "http://epguides.com/common/exportToCSV.asp?rage=";
-            QString address = "http://epguides.com/common/exportToCSVmaze.asp?maze=";
+            QString address = "https://epguides.com/common/exportToCSVmaze.asp?maze=";
 
             //address.append( rage );
             address.append( maze );
@@ -541,9 +540,8 @@ void MainWindow::addLineToEpisodeList(QString line)
         if (dateReturn.valid) {
             // Check if episode is released yet and grey out background if not
             if (dateReturn.date.operator >(dateReturn.date.currentDate())) {
-                QColor kleur = QColor(150,150,150);
-                ui->listWidget->item(0)->setBackgroundColor(kleur);
-
+                ui->listWidget->item(0)->setBackground(unreleasedBgColor);
+                ui->listWidget->item(0)->setForeground(unreleasedFgColor);
             }
         }
 
@@ -618,6 +616,7 @@ void MainWindow::saveSettingsFile()
     }
 
     QTextStream out(&file);
+    out << SETTINGS_PROXY_SYSTEM << " " << QVariant(useSystemProxy).toString() << "\n";
     out << SETTINGS_PROXY_ADDRESS << " " << proxyAddress << "\n";
     out << SETTINGS_PROXY_PORT << " " << QString::number(proxyPort) << "\n";
 
@@ -641,6 +640,8 @@ bool MainWindow::loadSettingsFile()
                 proxyAddress = words[1];
             } else if (words[0] == SETTINGS_PROXY_PORT) {
                 proxyPort = words[1].toInt();
+            } else if (words[0] == SETTINGS_PROXY_SYSTEM) {
+                useSystemProxy = QVariant(words[1]).toBool();
             }
         }
     }
@@ -658,9 +659,9 @@ void MainWindow::on_listWidget_clicked(const QModelIndex& /*index*/)
 void MainWindow::toggleStarButton(int bright)
 {
     if (bright) {
-        ui->starButton->setIcon(QIcon(":star_bright"));
+        ui->starButton->setIcon(QIcon("://icons/icons8-star-filled-48.png"));
     } else {
-        ui->starButton->setIcon(QIcon(":star_dim"));
+        ui->starButton->setIcon(QIcon("://icons/icons8-star-filled-dark-48.png"));
     }
 }
 
@@ -726,7 +727,7 @@ void MainWindow::on_actionRe_download_seriesList_triggered()
 {
     ui->label->setText("Downloading list of all series...");
     dlMode = DLMODE_SERIESLIST;
-    QUrl url = QUrl("http://epguides.com/common/allshows.txt");
+    QUrl url = QUrl("https://epguides.com/common/allshows.txt");
     doDownload(url);
 }
 
@@ -801,6 +802,7 @@ void MainWindow::on_refreshButton_clicked()
 
 void MainWindow::on_pushButton_SettingsOK_clicked()
 {
+    useSystemProxy = ui->checkBox_proxySystem->isChecked();
     proxyAddress = ui->lineEdit_ProxyAddress->text();
     proxyPort = ui->lineEdit_ProxyPort->text().toInt();
 
@@ -813,16 +815,22 @@ void MainWindow::on_pushButton_SettingsOK_clicked()
 
 void MainWindow::setProxy()
 {
-    QNetworkProxy proxy;
+    QNetworkProxy proxy = QNetworkProxy::applicationProxy();
 
-    if (proxyAddress.isEmpty()) {
+    if (useSystemProxy) {
+        //QNetworkProxyFactory::setUseSystemConfiguration(true);
+        //proxy = QNetworkProxyFactory::proxyForQuery(QNetworkProxyQuery(QUrl("https://epguides.com"))).value(0);
+        proxy.setType(QNetworkProxy::DefaultProxy);
+        log("Using system proxy settings.");
+    } else if (proxyAddress.isEmpty()) {
         proxy.setType(QNetworkProxy::NoProxy);
+        log("Using no proxy.");
     } else {
-
         proxy.setType(QNetworkProxy::HttpProxy);
-
-        proxy.setHostName( proxyAddress );
-        proxy.setPort( proxyPort );
+        proxy.setHostName(proxyAddress);
+        proxy.setPort(proxyPort);
+        log(QString("Using proxy settings: %1:%2")
+            .arg(proxyAddress).arg(proxyPort));
     }
 
     manager.setProxy(proxy);
@@ -835,6 +843,7 @@ void MainWindow::on_pushButton_SettingsCancel_clicked()
 
 void MainWindow::on_settingsButton_clicked()
 {
+    ui->checkBox_proxySystem->setChecked(useSystemProxy);
     ui->lineEdit_ProxyAddress->setText( proxyAddress );
     ui->lineEdit_ProxyPort->setText( QString::number(proxyPort) );
 

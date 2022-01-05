@@ -24,11 +24,12 @@
 #define SETTINGS_FILENAME "seriesSettings.txt"
 #define SETTINGS_PROXY_ADDRESS "proxyAddress"
 #define SETTINGS_PROXY_PORT "proxyPort"
+#define SETTINGS_PROXY_SYSTEM "proxyUseSystem"
 
 #define SERIESLIST_FILENAME "seriesList.txt"
 #define SERIESLIST_FAV_FILENAME "seriesListFavourites.txt"
 
-#define SERIESAPP_VERSION "1.1.0" // The program version
+#define SERIESAPP_VERSION "1.1.1-testing" // The program version
 
 #define DLMODE_NONE "none"
 #define DLMODE_SERIESLIST "seriesList"
@@ -65,8 +66,8 @@ public:
     QStringList favList;        // Favourite series list
     QStringList epList;         // Contains friendly names (series ep# - epname) of episodes currently being displayed
     QStringList epLineList;     // Contains episode list lines (raw)
-    QString dlMode;             // Mode of current download
-    QString viewMode;           // What the list is currently viewing; one of: series, episodes
+    QString dlMode = DLMODE_NONE; // Mode of current download
+    QString viewMode = VIEWMODE_NONE; // What the list is currently viewing; one of: series, episodes
     QString currentSeries;      // Current series being viewed
     int selectedIndex;          // Index of series currently selected in the listWidget
     QFileInfo seriesListInfo;   // Info of the seriesList file
@@ -78,8 +79,9 @@ public:
     int calculateDaysOld(QFileInfo fileInfo);
     void addDaysOldString(QString &str, int days);
 
+    bool useSystemProxy = true;
     QString proxyAddress;
-    int proxyPort;
+    int proxyPort = 0;
     void setProxy();
 
     void log(QString msg);
@@ -116,6 +118,11 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    const QColor favBgColor {200, 200, 20};
+    const QColor favFgColor {0, 0, 0};
+    const QColor unreleasedBgColor {150, 150, 150};
+    const QColor unreleasedFgColor {0, 0, 0};
 
 private slots:
     void on_listWidget_doubleClicked(QModelIndex index);

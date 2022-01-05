@@ -39,7 +39,7 @@
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page_main">
       <layout class="QGridLayout" name="gridLayout">
@@ -70,11 +70,21 @@
              <property name="minimumSize">
               <size>
                <width>0</width>
-               <height>22</height>
+               <height>0</height>
               </size>
              </property>
              <property name="text">
               <string>...</string>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/icons/icons8-settings-48.png</normaloff>:/icons/icons8-settings-48.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -83,7 +93,7 @@
              <property name="minimumSize">
               <size>
                <width>0</width>
-               <height>22</height>
+               <height>0</height>
               </size>
              </property>
              <property name="text">
@@ -91,7 +101,13 @@
              </property>
              <property name="icon">
               <iconset resource="icons.qrc">
-               <normaloff>:/back</normaloff>:/back</iconset>
+               <normaloff>:/icons/icons8-back-48.png</normaloff>:/icons/icons8-back-48.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -106,7 +122,7 @@
              <property name="minimumSize">
               <size>
                <width>0</width>
-               <height>22</height>
+               <height>0</height>
               </size>
              </property>
              <property name="text">
@@ -114,7 +130,13 @@
              </property>
              <property name="icon">
               <iconset resource="icons.qrc">
-               <normaloff>:/refresh</normaloff>:/refresh</iconset>
+               <normaloff>:/icons/icons8-synchronize-48.png</normaloff>:/icons/icons8-synchronize-48.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -128,7 +150,13 @@
              </property>
              <property name="icon">
               <iconset resource="icons.qrc">
-               <normaloff>:/search</normaloff>:/search</iconset>
+               <normaloff>:/icons/icons8-search-48.png</normaloff>:/icons/icons8-search-48.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -162,7 +190,13 @@
              </property>
              <property name="icon">
               <iconset resource="icons.qrc">
-               <normaloff>:/star_dim</normaloff>:/star_dim</iconset>
+               <normaloff>:/icons/icons8-star-filled-dark-48.png</normaloff>:/icons/icons8-star-filled-dark-48.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -192,26 +226,33 @@
      <widget class="QWidget" name="page_settings">
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
+        <widget class="QCheckBox" name="checkBox_proxySystem">
+         <property name="text">
+          <string>Use system proxy settings</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>HTTP Proxy</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit_ProxyAddress"/>
-         </item>
-         <item row="1" column="0">
+         <item row="2" column="0">
           <widget class="QLabel" name="label_3">
            <property name="text">
             <string>Port</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>HTTP Proxy</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
           <widget class="QLineEdit" name="lineEdit_ProxyPort"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="lineEdit_ProxyAddress"/>
          </item>
         </layout>
        </item>

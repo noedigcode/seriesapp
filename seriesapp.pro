@@ -22,4 +22,4 @@ FORMS    += \
 RESOURCES += icons.qrc
 
 # For Windows exe icon
-win32:RC_FILE += seriesapp.rc
+win32:RC_FILE += windowsicon.rc
