@@ -18,6 +18,7 @@
 #include <QUrl>
 #include <QWidget>
 #include <QSharedPointer>
+#include <QTextDocument>
 
 #define STACKED_WIDGET_PAGE_MAIN 0
 #define STACKED_WIDGET_PAGE_SETTINGS 1
@@ -64,6 +65,8 @@ struct Series
         // Remove quotes
         name.remove(0, 1);
         name.remove(name.count()-1, 1);
+
+        name = decodeHtml(name);
 
         // Series Rage code
         rageNo = cols.value(2);
@@ -115,6 +118,13 @@ struct Series
 
         return cols;
     }
+
+    static QString decodeHtml(QString html)
+    {
+        QTextDocument t;
+        t.setHtml(html);
+        return t.toPlainText();
+    }
 };
 typedef QSharedPointer<Series> SeriesPtr;
 
@@ -148,6 +158,8 @@ struct Episode
         // Remove quotes
         name.remove(0, 1);
         name.remove(name.count()-1, 1);
+
+        name = Series::decodeHtml(name);
 
         // Episode number
         number = cols.value(2);
