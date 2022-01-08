@@ -1,6 +1,15 @@
 Changelog
 =========
 
+[1.1.2] - January 2022
+----------------------
+
+Fixed
+
+- Favourites list saving wrong and only loading first one
+
+
+
 [1.1.1] - January 2022
 ----------------------
 
