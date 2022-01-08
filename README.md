@@ -1,4 +1,4 @@
-![Seriesapp Logo](icons/asteroid_64.png)
+![Seriesapp Logo](res/icons/asteroid_64.png)
 Series-app
 ==========
 For your series
@@ -9,7 +9,7 @@ For your series
 Series-app is a small application that retrieves series and episode info from
 epguides.com.
 
-![Screenshot](screenshot.png)
+![Screenshot](res/screenshot.png)
 
 Episode dates are shown when hovering the mouse over an episode name and
 yet unreleased episodes are marked grey.
