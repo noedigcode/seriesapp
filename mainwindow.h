@@ -13,15 +13,13 @@
 #include <QNetworkProxy>
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QSharedPointer>
 #include <QStandardPaths>
 #include <QStringList>
+#include <QTextDocument>
 #include <QUrl>
 #include <QWidget>
-#include <QSharedPointer>
-#include <QTextDocument>
 
-#define STACKED_WIDGET_PAGE_MAIN 0
-#define STACKED_WIDGET_PAGE_SETTINGS 1
 
 #define SETTINGS_FILENAME "seriesSettings.txt"
 #define SETTINGS_PROXY_ADDRESS "proxyAddress"
@@ -212,6 +210,7 @@ public:
     QNetworkReply *currentDownload;
 
     QList<SeriesPtr> seriesList;  // List of all series
+    QHash<QString, SeriesPtr> seriesNumberMap;
     QList<int> seriesListGUI;   // List of all series displayed in GUI,
                                 // containing int referring to index of series in main seriesList
     QList<SeriesPtr> favList;        // Favourite series list
@@ -282,9 +281,11 @@ private slots:
     void on_starButton_clicked();
     void on_refreshButton_clicked();
     void on_pushButton_SettingsOK_clicked();
-    void on_pushButton_SettingsCancel_clicked();
     void on_settingsButton_clicked();
     void on_pushButton_OpenSettingsFolder_clicked();
+    void on_pushButton_About_clicked();
+    void on_button_settings_back_clicked();
+    void on_button_about_back_clicked();
 };
 
 #endif // SERIES_H

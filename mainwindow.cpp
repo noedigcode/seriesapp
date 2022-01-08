@@ -9,8 +9,17 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // Version in window title
     this->setWindowTitle(QString("Series-app %1").arg(SERIESAPP_VERSION));
-    ui->stackedWidget->setCurrentIndex(STACKED_WIDGET_PAGE_MAIN);
+
+    // Version in about dialog
+    QString html = ui->textBrowser_about->toHtml();
+    html.replace("%VERSION%", SERIESAPP_VERSION);
+    ui->textBrowser_about->setHtml(html);
+
+    ui->stackedWidget->setCurrentWidget(ui->page_main);
+
+    ui->pushButton_OpenSettingsFolder->setToolTip(getSettingsDir());
 
     // Try to load settings file
     if (loadSettingsFile()) {
@@ -103,7 +112,8 @@ QString MainWindow::getSettingsDir(QString addfile)
 
 QString MainWindow::getSeriesCacheFilename(SeriesPtr s)
 {
-    return QString("epscache_%1_%2.txt").arg(s->mazeNo).arg(s->directory);
+    return QString("epscache_%1_%2_%3.txt")
+            .arg(s->mazeNo).arg(s->rageNo).arg(s->directory);
 }
 
 void MainWindow::doDownload(const QUrl &url)
@@ -127,6 +137,7 @@ void MainWindow::downloadFinished(QNetworkReply *reply)
 
             // Clear all lists:
             seriesList.clear();
+            seriesNumberMap.clear();
             seriesListGUI.clear();
             ui->listWidget->clear();
 
@@ -364,12 +375,19 @@ bool MainWindow::loadEpListFile(SeriesPtr s)
     return true;
 }
 
-// Adds a line that is read from the series list text file to the seriesList(s)
+/* Adds a line that is read from the series list text file to the seriesList
+ * if valid. */
 void MainWindow::addLineToSeriesList(QString line)
 {
     SeriesPtr s(new Series(line));
     if (s->valid) {
-        seriesList.append(s);
+        QString no = QString("%1_%2").arg(s->mazeNo).arg(s->rageNo);
+        if (!seriesNumberMap.contains(no)) {
+            seriesList.append(s);
+            seriesNumberMap.insert(no, s);
+        } else {
+            //log("Debug: duplicate series: " + s->name);
+        }
     }
 }
 
@@ -655,7 +673,7 @@ void MainWindow::on_pushButton_SettingsOK_clicked()
 
     setProxy();
 
-    ui->stackedWidget->setCurrentIndex(STACKED_WIDGET_PAGE_MAIN);
+    ui->stackedWidget->setCurrentWidget(ui->page_main);
 }
 
 void MainWindow::setProxy()
@@ -681,22 +699,32 @@ void MainWindow::setProxy()
     manager.setProxy(proxy);
 }
 
-void MainWindow::on_pushButton_SettingsCancel_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(STACKED_WIDGET_PAGE_MAIN);
-}
-
 void MainWindow::on_settingsButton_clicked()
 {
     ui->checkBox_proxySystem->setChecked(useSystemProxy);
     ui->lineEdit_ProxyAddress->setText( proxyAddress );
     ui->lineEdit_ProxyPort->setText( QString::number(proxyPort) );
 
-    ui->stackedWidget->setCurrentIndex(STACKED_WIDGET_PAGE_SETTINGS);
+    ui->stackedWidget->setCurrentWidget(ui->page_settings);
 }
 
 void MainWindow::on_pushButton_OpenSettingsFolder_clicked()
 {
     QUrl url = QUrl::fromLocalFile(getSettingsDir());
     QDesktopServices::openUrl(url);
+}
+
+void MainWindow::on_pushButton_About_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->page_about);
+}
+
+void MainWindow::on_button_settings_back_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->page_main);
+}
+
+void MainWindow::on_button_about_back_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->page_settings);
 }
