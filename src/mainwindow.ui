@@ -14,8 +14,8 @@
    <string>Series-app</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="icons.qrc">
-    <normaloff>:/icons/asteroid_64.png</normaloff>:/icons/asteroid_64.png</iconset>
+   <iconset>
+    <normaloff>:/res/icons/asteroid_64.png</normaloff>:/res/icons/asteroid_64.png</iconset>
   </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
@@ -77,8 +77,8 @@
               <string>...</string>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
-               <normaloff>:/icons/icons8-settings-48.png</normaloff>:/icons/icons8-settings-48.png</iconset>
+              <iconset>
+               <normaloff>:/res/icons/icons8-settings-48.png</normaloff>:/res/icons/icons8-settings-48.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -100,8 +100,8 @@
               <string>...</string>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
-               <normaloff>:/icons/icons8-back-48.png</normaloff>:/icons/icons8-back-48.png</iconset>
+              <iconset>
+               <normaloff>:/res/icons/icons8-back-48.png</normaloff>:/res/icons/icons8-back-48.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -129,8 +129,8 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
-               <normaloff>:/icons/icons8-synchronize-48.png</normaloff>:/icons/icons8-synchronize-48.png</iconset>
+              <iconset>
+               <normaloff>:/res/icons/icons8-synchronize-48.png</normaloff>:/res/icons/icons8-synchronize-48.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -149,8 +149,8 @@
               <string>Search</string>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
-               <normaloff>:/icons/icons8-search-48.png</normaloff>:/icons/icons8-search-48.png</iconset>
+              <iconset>
+               <normaloff>:/res/icons/icons8-search-48.png</normaloff>:/res/icons/icons8-search-48.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -189,8 +189,8 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
-               <normaloff>:/icons/icons8-star-filled-dark-48.png</normaloff>:/icons/icons8-star-filled-dark-48.png</iconset>
+              <iconset>
+               <normaloff>:/res/icons/icons8-star-filled-dark-48.png</normaloff>:/res/icons/icons8-star-filled-dark-48.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -251,8 +251,8 @@
             <string>...</string>
            </property>
            <property name="icon">
-            <iconset resource="icons.qrc">
-             <normaloff>:/icons/icons8-back-48.png</normaloff>:/icons/icons8-back-48.png</iconset>
+            <iconset>
+             <normaloff>:/res/icons/icons8-back-48.png</normaloff>:/res/icons/icons8-back-48.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -378,8 +378,8 @@
             <string>...</string>
            </property>
            <property name="icon">
-            <iconset resource="icons.qrc">
-             <normaloff>:/icons/icons8-back-48.png</normaloff>:/icons/icons8-back-48.png</iconset>
+            <iconset>
+             <normaloff>:/res/icons/icons8-back-48.png</normaloff>:/res/icons/icons8-back-48.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -427,7 +427,7 @@ color: black;</string>
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;img src=&quot;:/icons/asteroid_64.png&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;img src=&quot;:/res/icons/asteroid_64.png&quot; /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600;&quot;&gt;Seriesapp&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
@@ -484,8 +484,6 @@ p, li { white-space: pre-wrap; }
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="icons.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

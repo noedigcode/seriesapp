@@ -7,8 +7,7 @@ For your series
 2011-2022 Gideon van der Kolf, noedigcode@gmail.com
 
 Series-app is a small application that retrieves series and episode info from
-epguides.com and allows the user to view and copy episode names to the clipboard
-(in case you still need to manually rename an episode).
+epguides.com.
 
 ![Screenshot](screenshot.png)
 
@@ -17,9 +16,10 @@ yet unreleased episodes are marked grey.
 
 The series and episode lists are cached so you don't have to re-download every time.
 
-Double-clicking on an episode name copies the name and number to the clipboard.
+Double-clicking on an episode name copies the name and number to the clipboard,
+useful for old school manual renaming.
 
-A star button marks series as favourites for quick access.
+Series can be starred for quick access.
 
 Series-app is written in C++ using Qt5 and runs on Linux and Windows (and probably Mac OS too).
 

@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/">
+    <qresource prefix="/res">
         <file>icons/asteroid_64.png</file>
         <file>icons/icons8-back-48.png</file>
         <file>icons/icons8-search-48.png</file>

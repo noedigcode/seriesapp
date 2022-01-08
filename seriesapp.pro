@@ -10,16 +10,19 @@ QT     += core gui widgets network
 TARGET = seriesapp
 TEMPLATE = app
 
-HEADERS  += \
-    mainwindow.h
+INCLUDEPATH += src
 
-SOURCES += main.cpp \
-    mainwindow.cpp
+HEADERS  += \
+    src/mainwindow.h
+
+SOURCES += \
+    src/main.cpp \
+    src/mainwindow.cpp
 
 FORMS    += \
-    mainwindow.ui
+    src/mainwindow.ui
 
-RESOURCES += icons.qrc
+RESOURCES += res/icons.qrc
 
 # For Windows exe icon
-win32:RC_FILE += windowsicon.rc
+win32:RC_FILE += res/windowsicon.rc

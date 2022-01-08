@@ -522,9 +522,9 @@ void MainWindow::on_listWidget_clicked(const QModelIndex& /*index*/)
 void MainWindow::toggleStarButton(int bright)
 {
     if (bright) {
-        ui->starButton->setIcon(QIcon("://icons/icons8-star-filled-48.png"));
+        ui->starButton->setIcon(QIcon("://res/icons/icons8-star-filled-48.png"));
     } else {
-        ui->starButton->setIcon(QIcon("://icons/icons8-star-filled-dark-48.png"));
+        ui->starButton->setIcon(QIcon("://res/icons/icons8-star-filled-dark-48.png"));
     }
 }
 

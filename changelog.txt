@@ -1,0 +1,28 @@
+Changelog
+=========
+
+[1.1.1] - January 2022
+----------------------
+
+Added
+
+- Button to open settings folder
+- About dialog
+- Don't show duplicate series
+
+Changes
+
+- Replaced icons with new ones from Icons8
+- Improve proxy settings with ability to use system proxy
+- Code cleanup and refactoring
+- Episode cache files naming changed to also include both rage and maze number
+
+Fixes
+
+- Ensure foreground list items are black when background is colorized
+- Use https as http doesn't work with epguides anymore
+- Use rage number if series doesn't have maze number
+- Account for commas in episode and series names
+- Decode HTML escape sequences in episode and series names
+
+
