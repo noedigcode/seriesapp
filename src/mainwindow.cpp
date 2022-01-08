@@ -347,8 +347,9 @@ bool MainWindow::loadFavListFile()
     QTextStream in(&file);
     while (!in.atEnd()) {
         QString line = in.readLine();
-        if (line.length()>1) {
-            favList.append(SeriesPtr(new Series(line)));
+        SeriesPtr s(new Series(line));
+        if (s->valid) {
+            favList.append(s);
         }
     }
 
@@ -464,7 +465,7 @@ void MainWindow::saveFavFile()
 
     QTextStream out(&file);
     foreach (SeriesPtr s, favList) {
-        out << s->rawText;
+        out << s->rawText << "\n";
     }
 
     file.close();

@@ -39,11 +39,6 @@
 #define VIEWMODE_SERIES "series"
 #define VIEWMODE_EPISODES "episodes"
 
-struct epDateReturn
-{
-    bool valid;
-    QDate date;
-};
 
 struct Series
 {
