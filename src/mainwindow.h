@@ -29,7 +29,7 @@
 #define SERIESLIST_FILENAME "seriesList.txt"
 #define SERIESLIST_FAV_FILENAME "seriesListFavourites.txt"
 
-#define SERIESAPP_VERSION "1.1.1"
+#define SERIESAPP_VERSION "1.1.2"
 
 #define DLMODE_NONE "none"
 #define DLMODE_SERIESLIST "seriesList"
