@@ -29,7 +29,7 @@
 #define SERIESLIST_FILENAME "seriesList.txt"
 #define SERIESLIST_FAV_FILENAME "seriesListFavourites.txt"
 
-#define SERIESAPP_VERSION "1.1.2"
+#define SERIESAPP_VERSION "1.1.3"
 
 #define DLMODE_NONE "none"
 #define DLMODE_SERIESLIST "seriesList"
@@ -72,7 +72,8 @@ struct Series
 
         // Series start date
         date = cols.value(4);
-        year = date.split(" ").value(1).toInt();
+        // Simplify date to account for double spaces
+        year = date.simplified().split(" ").value(1).toInt();
     }
 
     bool valid;
@@ -163,7 +164,8 @@ struct Episode
         }
 
         // Episode date
-        QString dateRaw = cols.value( maze ? 3 : 4);
+        QString dateRaw = cols.value(maze ? 3 : 4);
+        dateRaw = dateRaw.simplified(); // Simplify to account for double spaces
         if (maze) {
             date = QLocale(QLocale::English, QLocale::UnitedStates).toDate(
                        dateRaw, "dd MMM yy");
